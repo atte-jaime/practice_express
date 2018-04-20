@@ -12,10 +12,11 @@ app.use(express.static('public'));
 function validation(obj, op_type) {
     var valores = [obj.query.a, obj.query.b];
     console.log(obj.query);
-    
-    if (obj.query == 0 ) {
+    console.log(valores);
+
+    if (valores[0]==undefined) {
         op = 'No hay valores suficientes';
-        console.log(obj.query);
+        console.log("holi   " + obj.query);
         return op;
     } else if (valores.length == 2) {
         var a = parseInt(obj.query.a),
@@ -35,10 +36,9 @@ function validation(obj, op_type) {
         if (op_type == "/") {
             op = parseInt(a) / parseInt(b);
         }
-        
         return op;
 
-        
+
     }
 }
 
@@ -58,7 +58,7 @@ app.get('/suma', function (req, res) {
 });
 
 app.get('/resta', function (req, res) {
-res.render('index', {
+    res.render('index', {
         titulo: 'Resta',
         operation: 'La resta es: ' + validation(req, "-")
     });
